@@ -42,9 +42,12 @@ class KairosRequest(Resource):
                 }
             )
 
-        client.write_points(datapoints, time_precision='ms')
+        if client.write_points(datapoints, time_precision='ms') is True:
+            retval = 204
+        else:
+            retval = 500
 
-        return '', 200
+        return '', retval
 
 api.add_resource(KairosRequest, '/api/v1/datapoints')
 
