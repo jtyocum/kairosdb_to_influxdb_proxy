@@ -28,8 +28,10 @@ class KairosRequest(Resource):
     def post(self):
         json_request = request.get_json(force=True)
 
+        datapoints = []
+
         for k in json_request:
-            datapoint = [
+            datapoints.append(
                 {
                     "measurement": k['name'],
                     "tags": k['tags'],
@@ -38,9 +40,9 @@ class KairosRequest(Resource):
                         "value": k['value'],
                     }
                 }
-            ]
+            )
 
-            client.write_points(datapoint, time_precision='ms')
+        client.write_points(datapoints, time_precision='ms')
 
         return '', 200
 
