@@ -1,0 +1,6 @@
+influxdb_host: localhost
+influxdb_port: 8086
+influxdb_user: root
+influxdb_pass: root
+influxdb_db: example
+debug_mode: False
